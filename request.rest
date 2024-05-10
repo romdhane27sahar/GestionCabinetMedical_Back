@@ -1,0 +1,78 @@
+
+//create a user 
+POST http://localhost:5000/users
+
+Content-Type :application/json 
+
+{
+    "name":"imen",
+    "lastname":"romdhane",
+    "address":"sousse",
+    "telephone":"20055621",
+    "email":"imen@gmail.com",
+    "password" :"12345678",
+    "confPassword": "12345678",
+    "role":"secretaire"
+}
+
+****
+//get all users
+GET  http://localhost:5000/users
+
+****
+
+//get single user
+GET  http://localhost:5000/users/69b2f6fb-b8f6-400f-844b-03339a8aa198
+
+****
+//update user 
+PATCH  http://localhost:5000/users/31371429-cc00-4938-9a51-7acdcdb57c3e
+
+Content-Type :application/json 
+{
+    "name":"imen2",
+    "lastname":"romdhane",
+    "address":"sousse",
+    "telephone":"20055621",
+    "email":"imen@gmail.com",
+    "password" :"12345678",
+    "confPassword": "12345678",
+    "role":"secretaire"
+}
+
+****
+//delete user 
+DELETE http://localhost:5000/users/5ec81080-b52e-459d-9231-4000039f95b8
+
+****
+//Login user 
+
+POST http://localhost:5000/login
+
+Content-Type :application/json 
+
+{
+   
+    "email":"admin@gmail.com",
+    "password" :"123456"
+  
+}
+*****
+
+POST http://localhost:5000/login
+
+Content-Type :application/json 
+
+{  
+    "email":"john@gmail.com",
+    "password" :"123456"
+    
+}
+*****
+//Me
+
+GET http://localhost:5000/me
+
+*****
+//logout
+DELETE http://localhost:5000/logout
