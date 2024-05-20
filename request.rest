@@ -76,3 +76,50 @@ GET http://localhost:5000/me
 *****
 //logout
 DELETE http://localhost:5000/logout
+
+*******
+//ajout fiche patient 
+POST http://localhost:5000/fichePatient
+
+{
+    "name":"patient",
+    "lastname":"romdhane",
+    "telephone":"20055621",
+    "email":"patient@gmail.com",
+    "address":"sousse",
+    "sexe":"homme",
+    "dateNaiss":"1985-05-20",
+    "numSecuriteSoc":"1234567890123"
+    
+    
+   
+}
+*********
+//get toutes FichePatient 
+
+http://localhost:5000/fichePatient
+
+************
+//getSingle fichePatient 
+
+http://localhost:5000/fichePatient/277f1549-1e46-44c1-b45b-6e391535898d
+
+********
+//update fiche patient 
+http://localhost:5000/fichePatient/277f1549-1e46-44c1-b45b-6e391535898d
+
+{
+    "name":"patientTest",
+    "lastname":"romdhaneTest",
+    "telephone":"20055622",
+    "email":"patient@gmail.com",
+    "address":"sousse",
+    "sexe":"homme",
+    "dateNaiss":"1985-05-22",
+    "numSecuriteSoc":"1234567890123"
+    
+}
+*****************************
+//delete fichePatient 
+
+http://localhost:5000/fichePatient/1a75ea29-7c38-4bf7-809b-474a9ad21317

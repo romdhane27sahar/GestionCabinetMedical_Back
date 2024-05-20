@@ -7,6 +7,10 @@ import UserRoute from "./routes/UserRoute.js";
 import AuthRoute from "./routes/AuthRoute.js";
 import SequelizeStore from "connect-session-sequelize";
 
+import FichePatient from "./models/FichePatientModel.js";
+import FichePatientRoute from "./routes/FichePatientRoute.js";
+
+
 //related to reset password
 //import nodemailer from "nodemailer"
 
@@ -27,6 +31,7 @@ const store = new sessionStore({ /** crée une instance de Sequelize Store en pa
 /**Créer la bd et ses tables pour la 1ere fois eouis on l'a désactivé */
 (async()=>{
     await db.sync();
+    await FichePatient.sync(); 
 })();
 
 
@@ -58,6 +63,7 @@ ce code permet à l'application Express d'autoriser les requêtes CORS en proven
 app.use(express.json());/** Ce middleware est utilisé pour analyser le corps des requêtes HTTP entrantes avec un type MIME de application/json. Il permet à votre application Express de comprendre et de traiter les données JSON envoyées dans le corps des requêtes */
 app.use(UserRoute);/** l'utilisation d'un routeur personnalisé appelé UserRoute. Les routeurs en Express sont des instances d'objets Router qui vous permettent de regrouper des routes et des middlewares associés. Le routeur UserRoute est probablement responsable de la gestion des routes liées aux utilisateurs dans votre application, telles que la création, la récupération, la mise à jour et la suppression d'utilisateurs. */
 app.use(AuthRoute);
+app.use(FichePatientRoute);
 
 
 // store.sync();
