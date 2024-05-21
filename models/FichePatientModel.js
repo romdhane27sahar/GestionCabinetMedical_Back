@@ -1,107 +1,87 @@
-import {Sequelize}from"sequelize";
+import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
 
-const {DataTypes} = Sequelize;
+const { DataTypes } = Sequelize;
 
-const FichePatient = db.define('fichePatient',{
-    uuid:{ /**UUID signifie "Universally Unique Identifier" (Identifiant Universel Unique). C'est un identifiant standardisé et universellement unique, souvent utilisé dans les logiciels et les systèmes informatiques pour identifier de manière unique des entités telles que des utilisateurs, des objets, des transactions, etc. */
+const FichePatient = db.define('fichePatient', {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    uuid: {
         type: DataTypes.STRING,
         defaultValue: DataTypes.UUIDV4,
         allowNull: false,
-        validate:{ /**spécifie les contraintes de validation pour la colonne.  */
+        // primaryKey: true,
+        validate: {
             notEmpty: true
         }
     },
-    name:{
+   
+    name: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate:{
+        validate: {
             notEmpty: true,
             len: [3, 100]
         }
     },
-    
-    lastname:{
+    lastname: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate:{
+        validate: {
             notEmpty: true,
             len: [3, 100]
         }
     },
-
-    telephone:{
+    telephone: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate:{
+        validate: {
             notEmpty: true,
             len: [8, 100]
         }
     },
-    email:{
+    email: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate:{
+        validate: {
             notEmpty: true,
             isEmail: true
         }
     },
-    address:{
+    address: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate:{
+        validate: {
             notEmpty: true,
             len: [5, 100]
         }
     },
-    sexe:{
+    sexe: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate:{
+        validate: {
             notEmpty: true
         }
-
     },
-
-    dateNaiss:{
+    dateNaiss: {
         type: DataTypes.DATEONLY,
         allowNull: false,
-        validate:{
-            notEmpty: true,
-            
-        }
-
-    },
-
-    numSecuriteSoc:{
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate:{
+        validate: {
             notEmpty: true
         }
     },
-    
-},{
-    /**Cette option spécifie que le nom de la table dans la base de données doit être le même que le nom défini dans le modèle.  */
-    freezeTableName: true
-}, {
-    validate(values) {
-      // Validation supplémentaire au niveau du modèle
-      // ...
-  
-      // Vérification du champ `name`
-      if ( values.name.length < 3 || values.name.length > 100) {
-        throw new Error('Le nom doit avoir une longueur entre 3 et 100 caractères');
-      }
-  
-      // Vérification du champ `email`
-      if ( !isEmail(values.email)) {
-        throw new Error('Adresse e-mail invalide');
-      }
-  
-      // ... (vérification des autres champs) ...
+    numSecuriteSoc: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
     }
-  });
-
+}, {
+    freezeTableName: true
+});
 
 export default FichePatient;

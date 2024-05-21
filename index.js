@@ -8,7 +8,13 @@ import AuthRoute from "./routes/AuthRoute.js";
 import SequelizeStore from "connect-session-sequelize";
 
 import FichePatient from "./models/FichePatientModel.js";
+import RendezVous from "./models/Rendez-vousModel.js";
+import ProchainRendezVous from "./models/ProchainRendez-vousModel.js";
+
 import FichePatientRoute from "./routes/FichePatientRoute.js";
+import RendezVousRoute from "./routes/RendezVousRoute.js";
+import ProchainRvRoute from "./routes/ProchainRvRoute.js";
+
 
 
 //related to reset password
@@ -25,6 +31,18 @@ const store = new sessionStore({ /** crée une instance de Sequelize Store en pa
 });
 
 
+// Relations
+FichePatient.hasMany(RendezVous, { foreignKey: 'fichePatientId' });
+FichePatient.hasMany(ProchainRendezVous, { foreignKey: 'fichePatientId' });
+
+RendezVous.belongsTo(FichePatient, { foreignKey: 'fichePatientId' });
+ProchainRendezVous.belongsTo(FichePatient, { foreignKey: 'fichePatientId' });
+
+
+RendezVous.belongsTo(ProchainRendezVous, { foreignKey: 'prochainRendezVousId' });
+//ProchainRendezVous.belongsTo(RendezVous, { foreignKey: 'rendezVousId' });
+ProchainRendezVous.hasOne(RendezVous, { foreignKey: 'prochainRendezVousId' });
+//RendezVous.hasOne(ProchainRendezVous, { foreignKey: 'rendezVousId' });
 
 
 
@@ -32,6 +50,10 @@ const store = new sessionStore({ /** crée une instance de Sequelize Store en pa
 (async()=>{
     await db.sync();
     await FichePatient.sync(); 
+    await RendezVous.sync(); 
+    await ProchainRendezVous.sync(); 
+
+
 })();
 
 
@@ -64,6 +86,10 @@ app.use(express.json());/** Ce middleware est utilisé pour analyser le corps de
 app.use(UserRoute);/** l'utilisation d'un routeur personnalisé appelé UserRoute. Les routeurs en Express sont des instances d'objets Router qui vous permettent de regrouper des routes et des middlewares associés. Le routeur UserRoute est probablement responsable de la gestion des routes liées aux utilisateurs dans votre application, telles que la création, la récupération, la mise à jour et la suppression d'utilisateurs. */
 app.use(AuthRoute);
 app.use(FichePatientRoute);
+app.use(RendezVousRoute);
+app.use(ProchainRvRoute);
+
+
 
 
 // store.sync();
@@ -137,7 +163,6 @@ app.use(FichePatientRoute);
 //       .then((response) => res.send(response.message))
 //       .catch((error) => res.status(500).send(error.message));
 //   });
-
 
 
 /**démarrer le serveur Express et le met en écoute sur un port spécifié dans la variable d'environnement APP_PORT. */
