@@ -141,9 +141,6 @@ export const updateRendezVous = async (req, res) => {
       }
     }
     
-    await rendezVous.save();
-
-
 
     await rendezVous.save();  
     return res.json(rendezVous);
@@ -155,75 +152,26 @@ export const updateRendezVous = async (req, res) => {
   }
 };
 
-// export const updateRendezVous = async(req, res) =>{
-    // const rendezVous = await RendezVous.findOne({
-    //     where: {
-    //         uuid: req.params.id
-    //     }
-    // });
-    // if(!rendezVous) return res.status(404).json({msg: "rendez-vous non trouvé"});
 
-    // const {dateRendezVous, heureRendezVous,name, lastname,} = req.body;
-   
-    // try {
-    //     await RendezVous.update({
-    //        name:name,
-    //        lastname:lastname,
-    //         dateRendezVous: dateRendezVous,
-    //         heureRendezVous: heureRendezVous
-    //     },{
-    //         where:{
-    //             id: rendezVous.id
-    //         }
-    //     });
-    //     res.status(200).json({msg: "Rendez-vous mis à jour avec succès"});
-    // } catch (error) {
-    //     res.status(400).json({msg: error.message});
-    // }
-    //}
-    
-// Fonction pour mettre à jour le rendez-vous avec le nom, prénom, date et heure du prochain rendez-vous
-// export async function updateRendezVous(idRendezVous, nouveauxDetails) {
-//     try {
-//       // Récupérer le rendez-vous existant avec le prochain rendez-vous et la fiche patient associés
-//       const rendezVous = await RendezVous.findByPk(idRendezVous, {
-//         include: [
-//           {
-//             model: ProchainRendezVous,
-//             attributes: ['dateProchainRendezVous', 'heureProchainRendezVous']
-//           },
-//           {
-//             model: FichePatient,
-//             attributes: ['nom', 'prenom']
-//           }
-//         ]
-//       });
-  
-//       // Vérifier si le rendez-vous existe
-//       if (!rendezVous) {
-//         throw new Error('Rendez-vous introuvable');
-//       }
-  
-//       // Mettre à jour les attributs du prochain rendez-vous
-//       const prochainRendezVous = rendezVous.ProchainRendezVous;
-//       prochainRendezVous.dateProchainRendezVous = nouveauxDetails.dateProchainRendezVous;
-//       prochainRendezVous.heureProchainRendezVous = nouveauxDetails.heureProchainRendezVous;
-  
-//       // Mettre à jour les attributs de la fiche patient
-//       const fichePatient = rendezVous.FichePatient;
-//       fichePatient.nom = nouveauxDetails.nom;
-//       fichePatient.prenom = nouveauxDetails.prenom;
-  
-//       // Enregistrer les modifications dans la base de données
-//       await Promise.all([prochainRendezVous.save(), fichePatient.save()]);
-  
-//       // Retourner le rendez-vous mis à jour
-//       return rendezVous;
-//     } catch (error) {
-//       // Gérer les erreurs
-//       console.error(error);
-//       throw error;
-//     }
+export const deleteRendezVous = async(req, res) =>{
+    const rendezVous = await RendezVous.findOne({
+        where: {
+            uuid: req.params.id
+        }
+    });
+    if(!rendezVous) return res.status(404).json({msg: "rendezVous non trouvé"});
+    try {
+        await rendezVous.destroy({
+            where:{
+                id: rendezVous.id
+            }
+        });
+        res.status(200).json({msg: "RendezVous supprimé avec succès"});
+    } catch (error) {
+        res.status(400).json({msg: error.message});
+    }
+}
+
 
  
 

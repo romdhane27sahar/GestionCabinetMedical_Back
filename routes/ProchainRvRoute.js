@@ -1,7 +1,8 @@
 import express from "express";
 import { 
     createProchainRv,
-    updateProchainRv
+    updateProchainRv,
+    getProchainsRv
 //     getFiches,
 //     getFicheById,
    
@@ -17,7 +18,7 @@ const router = express.Router();
 
 router.post('/prochainRv',verifyUser, createProchainRv);
 
-// router.get('/fichePatient',verifyUser,getFiches);
+router.get('/prochainRv',verifyUser,getProchainsRv);
 // router.get('/fichePatient/:id', verifyUser,getFicheById);
 router.patch('/prochainRv/:id', verifyUser,updateProchainRv);
 // router.delete('/fichePatient/:id', verifyUser,deleteFiche)

@@ -2,7 +2,8 @@ import express from "express";
 import { 
     createRendezVous,
     getRendezVousWithProchainRv,
-    updateRendezVous
+    updateRendezVous,
+    deleteRendezVous
 //     getFicheById,
    
 //     updateFiche,
@@ -21,5 +22,5 @@ router.post('/rendezVous',verifyUser, createRendezVous);
 router.get('/rendezVousList',verifyUser,getRendezVousWithProchainRv);
 // router.get('/fichePatient/:id', verifyUser,getFicheById);
 router.patch('/rendezVousUpdate/:id', verifyUser,updateRendezVous);
-// router.delete('/fichePatient/:id', verifyUser,deleteFiche)
+router.delete('/rendezVous/:id', verifyUser,deleteRendezVous)
 export default router;
