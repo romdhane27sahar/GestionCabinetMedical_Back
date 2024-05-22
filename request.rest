@@ -151,6 +151,11 @@ http://localhost:5000/prochainRv
   "heureProchainRv": "15:30:00"
 }
 ****************
+//afficher liste des prochains rendezVous
+
+http://localhost:5000/prochainRv 
+
+****************
 //afficher la liste des rendez-vous ave leurs prochains rendezVous
 
 http://localhost:5000/rendezVousList
@@ -169,3 +174,8 @@ http://localhost:5000/rendezVousUpdate/18
 }
 *************
 //supprimer un rendezVous
+
+http://localhost:5000/rendezVous/8479e4c6-5ff5-43e3-82fb-99a5ea8c95a3
+***********
+//stats api 
+http://localhost:5000/stats

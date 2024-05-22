@@ -15,6 +15,8 @@ import FichePatientRoute from "./routes/FichePatientRoute.js";
 import RendezVousRoute from "./routes/RendezVousRoute.js";
 import ProchainRvRoute from "./routes/ProchainRvRoute.js";
 
+import StatsRoute from "./routes/StatsRoute.js";
+
 
 
 //related to reset password
@@ -96,6 +98,7 @@ app.use(AuthRoute);
 app.use(FichePatientRoute);
 app.use(RendezVousRoute);
 app.use(ProchainRvRoute);
+app.use(StatsRoute);
 
 
 
