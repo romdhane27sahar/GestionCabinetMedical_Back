@@ -2,6 +2,8 @@ import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
 
 const { DataTypes } = Sequelize;
+//FichePatient :c'est le nom du modele 
+//fichePatient est le nom de la table correspodante à ce modele dans la bd 
 
 const FichePatient = db.define('fichePatient', {
     id: {

@@ -20,6 +20,6 @@ router.post('/rendezVous',verifyUser, createRendezVous);
 
 router.get('/rendezVousList',verifyUser,getRendezVousWithProchainRv);
 // router.get('/fichePatient/:id', verifyUser,getFicheById);
-router.patch('/rendezVous/:id', verifyUser,updateRendezVous);
+router.patch('/rendezVousUpdate/:id', verifyUser,updateRendezVous);
 // router.delete('/fichePatient/:id', verifyUser,deleteFiche)
 export default router;

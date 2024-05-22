@@ -41,7 +41,15 @@ ProchainRendezVous.belongsTo(FichePatient, { foreignKey: 'fichePatientId' });
 
 RendezVous.belongsTo(ProchainRendezVous, { foreignKey: 'prochainRendezVousId' });
 //ProchainRendezVous.belongsTo(RendezVous, { foreignKey: 'rendezVousId' });
-ProchainRendezVous.hasOne(RendezVous, { foreignKey: 'prochainRendezVousId' });
+
+
+
+//correct one 
+ ProchainRendezVous.hasOne(RendezVous, { foreignKey: 'prochainRendezVousId' });
+
+
+
+
 //RendezVous.hasOne(ProchainRendezVous, { foreignKey: 'rendezVousId' });
 
 

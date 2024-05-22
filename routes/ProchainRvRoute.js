@@ -1,6 +1,7 @@
 import express from "express";
 import { 
-    createProchainRv
+    createProchainRv,
+    updateProchainRv
 //     getFiches,
 //     getFicheById,
    
@@ -18,6 +19,6 @@ router.post('/prochainRv',verifyUser, createProchainRv);
 
 // router.get('/fichePatient',verifyUser,getFiches);
 // router.get('/fichePatient/:id', verifyUser,getFicheById);
-// router.patch('/fichePatient/:id', verifyUser,updateFiche);
+router.patch('/prochainRv/:id', verifyUser,updateProchainRv);
 // router.delete('/fichePatient/:id', verifyUser,deleteFiche)
 export default router;

@@ -59,37 +59,31 @@ export const createProchainRv = async (req, res) => {
 
  
 
-// export const updateFiche = async(req, res) =>{
-//     const fiche = await FichePatient.findOne({
-//         where: {
-//             uuid: req.params.id
-//         }
-//     });
-//     if(!fiche) return res.status(404).json({msg: "Fiche non trouvée"});
-//     // const {name, email, password, confPassword, role,lastname,address,telephone} = req.body;
+export const updateProchainRv = async(req, res) =>{
+    const prochainRv = await ProchainRendezVous.findOne({
+        where: {
+            uuid: req.params.id
+        }
+    });
+    if(!prochainRv) return res.status(404).json({msg: "Prochain Rendez-vous non trouvé"});
+    // const {name, email, password, confPassword, role,lastname,address,telephone} = req.body;
 
-//     const {name, lastname,telephone,email, address, sexe,dateNaiss, numSecuriteSoc} = req.body;
+    const {dateProchainRv, heureProchainRv} = req.body;
    
-//     try {
-//         await FichePatient.update({
-//             name: name,
-//             lastname:lastname, 
-//             telephone:telephone,
-//             email:email,
-//             address:address,
-//             sexe:sexe,
-//             dateNaiss:dateNaiss,
-//             numSecuriteSoc:numSecuriteSoc
-//         },{
-//             where:{
-//                 id: fiche.id
-//             }
-//         });
-//         res.status(200).json({msg: "Fiche mise à jour avec succès"});
-//     } catch (error) {
-//         res.status(400).json({msg: error.message});
-//     }
-// }
+    try {
+        await ProchainRendezVous.update({
+            dateProchainRv: dateProchainRv,
+            heureProchainRv: heureProchainRv,
+        },{
+            where:{
+                id: prochainRv.id
+            }
+        });
+        res.status(200).json({msg: "Prochain rendez-vous à jour avec succès"});
+    } catch (error) {
+        res.status(400).json({msg: error.message});
+    }
+}
 
 // export const deleteFiche = async(req, res) =>{
 //     const fiche = await FichePatient.findOne({

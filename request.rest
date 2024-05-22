@@ -144,6 +144,13 @@ http://localhost:5000/prochainRv
 }
 
 ****************
+//updateprochain rendez-vous
+{
+  "fichePatientId": 1,
+  "dateProchainRv": "2024-05-31",
+  "heureProchainRv": "15:30:00"
+}
+****************
 //afficher la liste des rendez-vous ave leurs prochains rendezVous
 http://localhost:5000/rendezVousList
 
