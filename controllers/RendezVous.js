@@ -102,6 +102,29 @@ export const getRendezVousWithProchainRv = async (req, res) => {
 
 }
 
+//get single RendezVous avec prochains rendezVous by is  
+export const getRendezVousWithProchainRvById = async (req, res) => {
+    const { id } = req.params;
+
+   
+    try {
+        const rendezVous = await RendezVous.findOne({
+            where: { id },
+            include: [{
+                model: ProchainRendezVous,
+                as: 'prochainRendezVou', // alias pour éviter les conflits de noms
+                required: false // indique que ce n'est pas une jointure interne, donc même les rendez-vous sans prochain rendez-vous seront inclus
+            }]
+        });
+
+        res.status(200).json(rendezVous);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Quelque chose s'est mal passé" });
+    }
+
+}
+
 
 export const updateRendezVous = async (req, res) => {
   const { id } = req.params;

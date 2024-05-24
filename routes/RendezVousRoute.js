@@ -3,7 +3,8 @@ import {
     createRendezVous,
     getRendezVousWithProchainRv,
     updateRendezVous,
-    deleteRendezVous
+    deleteRendezVous,
+    getRendezVousWithProchainRvById
 //     getFicheById,
    
 //     updateFiche,
@@ -23,4 +24,7 @@ router.get('/rendezVousList',verifyUser,getRendezVousWithProchainRv);
 // router.get('/fichePatient/:id', verifyUser,getFicheById);
 router.patch('/rendezVousUpdate/:id', verifyUser,updateRendezVous);
 router.delete('/rendezVous/:id', verifyUser,deleteRendezVous)
+router.get('/rendezVous/:id', verifyUser,getRendezVousWithProchainRvById)
+
 export default router;
+

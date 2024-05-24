@@ -15,7 +15,7 @@ export const getFiches = async (req, res) => {
 export const getFicheById = async (req, res) => {
     try {
         const response = await FichePatient.findOne({
-            attributes: ['uuid','lastname','telephone','email', 'address', 'sexe','dateNaiss', 'numSecuriteSoc'],
+            attributes: ['uuid','name','lastname','telephone','email', 'address', 'sexe','dateNaiss', 'numSecuriteSoc'],
             where: {
                 uuid: req.params.id
             }
@@ -99,3 +99,29 @@ export const deleteFiche = async(req, res) =>{
         res.status(400).json({msg: error.message});
     }
 }
+
+// fichePatientController.js
+
+export const getFicheById2 = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        console.log('ID reçuuuuuuuuuu pour la recherche:', req.params.id); // Ajouter un log pour l'ID reçu
+        const fiche = await FichePatient.findOne({
+            where: {
+                id: id // Assurez-vous que cet ID existe dans votre base de données
+            }
+        });
+
+        if (!fiche) {
+            console.warn(`Aucun patient trouvé pour l'ID: ${req.params.id}`);
+            return res.status(404).json({ message: 'Patient not found' });
+        }
+
+        res.json(fiche);
+    } catch (error) {
+        console.error('Erreur lors de la récupération des détails du patient:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+}
+  

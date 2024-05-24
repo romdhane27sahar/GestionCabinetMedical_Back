@@ -100,9 +100,13 @@ POST http://localhost:5000/fichePatient
 http://localhost:5000/fichePatient
 
 ************
-//getSingle fichePatient 
+//getSingle fichePatient (uuid en parametre)
 
 http://localhost:5000/fichePatient/c2d8871e-8fdb-43ff-b4e2-e8d13efac918
+********
+
+//get single fichePatient (id en parametres)
+http://localhost:5000/fichePatientt/3
 ********
 //update fiche patient 
 http://localhost:5000/fichePatient/c2d8871e-8fdb-43ff-b4e2-e8d13efac918
@@ -161,6 +165,9 @@ http://localhost:5000/prochainRv
 http://localhost:5000/rendezVousList
 
 *************
+//afficher un rendez-vous avec ses prochains rendezVous (getById)
+http://localhost:5000/rendezVous/20
+**************
 //update rendezVous
 http://localhost:5000/rendezVousUpdate/18
 

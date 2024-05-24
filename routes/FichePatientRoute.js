@@ -5,7 +5,7 @@ import {
     getFicheById,
    
     updateFiche,
-  deleteFiche
+  deleteFiche, getFicheById2
   
 } from "../controllers/FichePatient.js";
 
@@ -18,6 +18,8 @@ router.post('/fichePatient',verifyUser,createFiche);
 
 router.get('/fichePatient',verifyUser,getFiches);
 router.get('/fichePatient/:id', verifyUser,getFicheById);
+router.get('/fichePatientt/:id', verifyUser, getFicheById2);
+
 router.patch('/fichePatient/:id', verifyUser,updateFiche);
 router.delete('/fichePatient/:id', verifyUser,deleteFiche)
 export default router;
